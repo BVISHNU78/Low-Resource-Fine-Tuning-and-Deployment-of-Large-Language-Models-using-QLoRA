@@ -202,4 +202,31 @@ On Kaggle:
 
 Go to Add-ons → Secrets
 Add your Hugging Face token
-Access it securely in code
+Access it securely in code                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+## Benchmark Results
+
+Environment:
+
+* Platform: Kaggle Notebook
+* GPU: Tesla P100-PCIE-16GB
+* Model: Qwen2.5-1.5B
+* Quantization: 4-bit (QLoRA)
+* Quant Type: NF4
+* Compute Dtype: FP16
+
+Configuration:
+
+* load_in_4bit: True
+* bnb_4bit_quant_type: nf4
+* bnb_4bit_compute_dtype: float16
+* bnb_4bit_use_double_quant: False
+
+Performance:
+
+* Peak GPU Memory Usage: ~4.5 GB *(measured)*
+* Training Time: XX minutes
+* Batch Size: X
+* Epochs: X
+
+Observations:
+QLoRA reduces memory usage significantly, allowing efficient fine-tuning of Qwen2.5-1.5B within ~5GB VRAM on a 16GB GPU.
