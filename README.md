@@ -229,4 +229,80 @@ Performance:
 * Epochs: X
 
 Observations:
-QLoRA reduces memory usage significantly, allowing efficient fine-tuning of Qwen2.5-1.5B within ~5GB VRAM on a 16GB GPU.
+QLoRA reduces memory usage significantly, allowing efficient fine-tuning of Qwen2.5-1.5B within ~5GB VRAM on a 16GB GPU.                              ## 🚀 Low-Resource Fine-Tuning of LLMs using QLoRA
+
+This project demonstrates efficient fine-tuning of a large language model using **QLoRA (Quantized Low-Rank Adaptation)** on limited hardware.
+
+---
+
+## 📌 Model Details
+
+* **Base Model:** Qwen2.5-1.5B
+* **Architecture:** Causal Language Model
+* **Fine-Tuning Method:** QLoRA (PEFT)
+* **Quantization:** 4-bit (NF4)
+* **Compute Dtype:** FP16
+
+---
+
+## ⚙️ Environment
+
+* **Platform:** Kaggle Notebook
+* **GPU:** Tesla P100-PCIE-16GB
+
+---
+
+## 📊 Parameter Efficiency
+
+* **Total Parameters:** 1,544,803,840 (~1.5B)
+* **Trainable Parameters:** 1,089,536 (~1.08M)
+* **Trainable Percentage:** 0.0705%
+
+**Insight:**
+Only **0.07% of parameters** are updated during training, reducing computation by ~**1400×** compared to full fine-tuning.
+
+---
+
+## 🧠 Memory Usage
+
+* **Peak GPU Memory Usage:** 10.48 GB
+
+**Insight:**
+Although QLoRA reduces the number of trainable parameters, peak memory usage during training remains high due to:
+
+* Forward and backward passes
+* Activations and gradients
+* Optimizer states
+
+---
+
+## ⚖️ Comparison
+
+| Method            | Trainable Params | Memory Usage |
+| ----------------- | ---------------- | ------------ |
+| Full Fine-Tuning  | 1.5B             | ~8–10+ GB    |
+| QLoRA (This Work) | ~1.08M           | 10.48 GB     |
+
+---
+
+## 📈 Key Observations
+
+* QLoRA drastically reduces the number of trainable parameters.
+* Memory usage is still significant during training due to intermediate computations.
+* Enables fine-tuning of large models on **consumer-grade or free GPUs**.
+
+---
+
+## 🏁 Conclusion
+
+This project shows that **QLoRA + PEFT** can make large language model fine-tuning feasible in low-resource environments, while maintaining efficiency and scalability.
+
+---
+
+## 📎 Future Improvements
+
+* Enable **double quantization** for further memory reduction
+* Experiment with **larger models (7B+)**
+* Add **evaluation metrics (accuracy, perplexity)**
+* Deploy using **Gradio / FastAPI**
+
